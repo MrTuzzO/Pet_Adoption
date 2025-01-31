@@ -33,11 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Function to populate the profile card
 function populateProfileCard(data) {
-    document.getElementById("full_name").textContent = data.first_name +" "+ data.last_name || "N/A";
+    let joined = new Date(data.date_joined).toLocaleString("en-US", {
+        dateStyle: "medium",  // or "full", "long", "short"
+        timeStyle: "short"    // or "full", "long", "medium", "short"
+    });
+    document.getElementById("full_name").textContent = data.first_name + " " + data.last_name || "N/A";
     document.getElementById("username").textContent = data.username || "N/A";
     document.getElementById("email").textContent = data.email || "N/A";
     document.getElementById("birthday").textContent = data.birthday || "N/A";
     document.getElementById("address").textContent = data.address || "N/A";
     document.getElementById("mobile").textContent = data.mobile || "N/A";
-    document.getElementById("joined").textContent = data.date_joined || "N/A";
+    document.getElementById("joined").textContent = joined || "N/A";
 }

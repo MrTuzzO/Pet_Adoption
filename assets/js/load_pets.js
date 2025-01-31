@@ -64,9 +64,13 @@ function displayPets(pets) {
     const petContainer = document.getElementById('petCardsHolder');
     petContainer.innerHTML = '';
 
-    pets.forEach(pet => {
-        petContainer.innerHTML += createPetCard(pet, selectedSpecies);
-    });
+    if (pets.length === 0) {
+        petContainer.innerHTML = `<p class="text-center w-100 text-muted">No pets found</p>`;
+    } else {
+        pets.forEach(pet => {
+            petContainer.innerHTML += createPetCard(pet, selectedSpecies);
+        });
+    }
 }
 
 

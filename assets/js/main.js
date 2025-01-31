@@ -109,7 +109,7 @@ document.getElementById('confirmLogout').addEventListener('click', async functio
         const loader = document.getElementById('loader');
         loader.classList.remove('d-none'); // Show loader
 
-        const response = await fetch('https://pet-adoption-omega-seven.vercel.app/api/auth/logout/', {
+        const response = await fetch(`${root_api}/api/auth/logout/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

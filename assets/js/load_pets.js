@@ -123,7 +123,7 @@ window.addEventListener('DOMContentLoaded', () => {
 // Function to fetch pets based on filters
 async function fetchFilteredPets(species, filters, page = 1) {
     const query = new URLSearchParams(filters).toString();
-    const response = await fetch(`${baseApiUrl}${species}/?page=${page}&${query}`);
+    const response = await fetch(`${root_api}${species}/?page=${page}&${query}`);
     const data = await response.json();
     return data;
 }

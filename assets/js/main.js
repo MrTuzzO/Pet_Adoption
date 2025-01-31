@@ -1,3 +1,11 @@
+document.addEventListener("DOMContentLoaded", () => {
+    includeHTML("header", "components/header.html");
+    includeHTML("footer", "components/footer.html");
+    includeHTML("loader", "components/loader.html");
+    addLogoutModal(); // Add logout modal after DOM is loaded
+});
+
+// Function to include HTML content into a container
 function includeHTML(id, file) {
     fetch(file)
         .then(response => response.text())
@@ -8,15 +16,7 @@ function includeHTML(id, file) {
         .catch(error => console.error(`Error loading ${file}:`, error));
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    includeHTML("header", "components/header.html");
-    includeHTML("footer", "components/footer.html");
-    includeHTML("loader", "components/loader.html");
-    // includeHTML("loader", "components/logout_modal.html");
-});
-
-
-// for alert
+// For displaying alerts
 function showAlert(message, type = 'danger', duration = 10000) {
     // Create the alert div
     const alertDiv = document.createElement('div');
@@ -25,7 +25,7 @@ function showAlert(message, type = 'danger', duration = 10000) {
     alertDiv.innerHTML = `
         ${message}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        `;
+    `;
 
     // Append the alert to the alert container
     const alertContainer = document.getElementById('alert-container');
@@ -38,17 +38,13 @@ function showAlert(message, type = 'danger', duration = 10000) {
     }, duration);
 }
 
-
+// Function to set up authentication buttons based on whether the user is logged in
 function setupAuthButtons() {
     const authToken = localStorage.getItem('authToken');
     const authButtons = document.getElementById('auth-buttons');
     const userName = localStorage.getItem('username');
 
     if (authToken) {
-        // authButtons.innerHTML = `
-        //     <a class="btn btn-outline-light" href="user_profile.html">Profile</a>
-        //     <button class="btn btn-outline-light" id="logout-btn">Logout</button>
-        // `;
         authButtons.innerHTML = `
             <a class="btn text-white p-0" href="user_profile.html" title="Profile">
                 <i class="fas fa-user-circle"></i> 
@@ -64,12 +60,11 @@ function setupAuthButtons() {
         });
     } else {
         authButtons.innerHTML = `
-        <a href="signup.html" class="btn btn-outline-light">Sign Up</a>
-        <a href="login.html" class="btn btn-outline-light">Login</a>
+            <a href="signup.html" class="btn btn-outline-light">Sign Up</a>
+            <a href="login.html" class="btn btn-outline-light">Login</a>
         `;
     }
 }
-
 
 // Function to add the logout modal to the document
 function addLogoutModal() {
@@ -93,56 +88,49 @@ function addLogoutModal() {
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
-}
-// addLogoutModal(); // Call the function after DOM is loaded
-document.addEventListener('DOMContentLoaded', function () {
-    addLogoutModal(); // Call the function after DOM is loaded
-});
 
-
-document.getElementById('confirmLogout').addEventListener('click', async function () {
-    const authToken = localStorage.getItem('authToken');
-    if (!authToken) {
-        showAlert('You are not logged in.', 'warning');
-        return;
-    }
-
-    try {
-        // for adding loader
-        const loader = document.getElementById('loader');
-        loader.classList.remove('d-none'); // Show loader
-
-        const response = await fetch(`${root_api}/api/auth/logout/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${authToken}`,
-            },
-        });
-
-        if (response.ok) {
-            // Remove the token and redirect to the login page
-            localStorage.removeItem('authToken');
-            localStorage.clear();
-            // alert('Logout successful!');
-            showAlert('Logout successful!', 'success');
-            window.location.href = 'login.html';
-        } else {
-            const errorData = await response.json();
-            console.error('Logout failed:', errorData);
-            showAlert('Logout failed. Please try again.', 'warning');
-
-
-            // Remove the token and redirect to the login page
-            localStorage.removeItem('authToken');
-            localStorage.clear();
-            // alert('Logout successful!');
-            window.location.href = 'login.html';
+    // Add event listener to the confirmLogout button after the modal is inserted
+    document.getElementById('confirmLogout').addEventListener('click', async function () {
+        const authToken = localStorage.getItem('authToken');
+        if (!authToken) {
+            showAlert('You are not logged in.', 'warning');
+            return;
         }
-    } catch (error) {
-        console.error('An unexpected error occurred during logout:', error);
-        showAlert('An unexpected error occurred. Please try again.');
-    } finally {
-        loader.classList.add("d-none");
-    }
-});
+
+        try {
+            // Show loader while logging out
+            const loader = document.getElementById('loader');
+            loader.classList.remove('d-none'); // Show loader
+
+            const response = await fetch(`${root_api}/api/auth/logout/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${authToken}`,
+                },
+            });
+
+            if (response.ok) {
+                // Remove the token and redirect to the login page
+                localStorage.removeItem('authToken');
+                localStorage.clear();
+                showAlert('Logout successful!', 'success');
+                window.location.href = 'login.html';
+            } else {
+                const errorData = await response.json();
+                console.error('Logout failed:', errorData);
+                showAlert('Logout failed. Please try again.', 'warning');
+                
+                // Remove the token and redirect to the login page
+                localStorage.removeItem('authToken');
+                localStorage.clear();
+                window.location.href = 'login.html';
+            }
+        } catch (error) {
+            console.error('An unexpected error occurred during logout:', error);
+            showAlert('An unexpected error occurred. Please try again.');
+        } finally {
+            loader.classList.add("d-none");
+        }
+    });
+}

@@ -122,6 +122,7 @@ window.addEventListener('DOMContentLoaded', () => {
 async function fetchFilteredPets(species, filters, page = 1) {
     const query = new URLSearchParams(filters).toString();
     const response = await fetch(`${root_api}/api/pet/${species}/?page=${page}&${query}`);
+    console.log(`${root_api}/api/pet/${species}/?page=${page}&${query}`);
     const data = await response.json();
     return data;
 }
@@ -130,7 +131,7 @@ async function fetchFilteredPets(species, filters, page = 1) {
 function getSelectedFilters() {
     const gender = document.getElementById('genderSelect').value;
     const colorSelect = document.getElementById('colorSelect');
-    const colors = Array.from(colorSelect.selectedOptions).map(option => option.value);
+    const colors = Array.from(colorSelect.selectedOptions).map(option => option.textContent);
 
     const filters = {};
     if (gender) filters.gender = gender;

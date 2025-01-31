@@ -58,7 +58,7 @@ function setupAuthButtons() {
                 <i class="fas fa-sign-out-alt text-white fs-5"></i>
             </button>
         `;
-        document.getElementById('logout-btn').addEventListener('click', function() {
+        document.getElementById('logout-btn').addEventListener('click', function () {
             const logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
             logoutModal.show();
         });
@@ -94,10 +94,13 @@ function addLogoutModal() {
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
-addLogoutModal();
+// addLogoutModal(); // Call the function after DOM is loaded
+document.addEventListener('DOMContentLoaded', function () {
+    addLogoutModal(); // Call the function after DOM is loaded
+});
 
 
-document.getElementById('confirmLogout').addEventListener('click', async function() {
+document.getElementById('confirmLogout').addEventListener('click', async function () {
     const authToken = localStorage.getItem('authToken');
     if (!authToken) {
         showAlert('You are not logged in.', 'warning');

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     sentRequestsContainer.innerHTML = ''; // Clear previous content
 
     // Fetch data from the API
-    fetch('https://pet-adoption-omega-seven.vercel.app/api/adoptions/adoption-request/sent-requests/', {
+    fetch(`${root_api}/api/adoptions/adoption-request/sent-requests/`, {
         method: 'GET',
         headers: {
             'Authorization': 'Token ' + localStorage.getItem('authToken') // assuming you're using token-based authentication

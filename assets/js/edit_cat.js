@@ -1,6 +1,6 @@
 const params = new URLSearchParams(window.location.search);
 const catId = params.get('id');
-const apiURL = "https://pet-adoption-omega-seven.vercel.app/api/pet/cats/";
+const apiURL = `${root_api}/api/pet/cats/`;
 const token = localStorage.getItem("authToken");
 
 document.addEventListener("DOMContentLoaded", () => {

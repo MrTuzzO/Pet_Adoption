@@ -3,7 +3,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const catId = urlParams.get("id");
 
 // Base API URL
-const apiUrl = `https://pet-adoption-omega-seven.vercel.app/api/pet/cats/${catId}/`;
+let apiUrl = `${root_api}/api/pet/cats/${catId}/`;
 
 // Fetch cat details
 const fetchCatDetails = async () => {

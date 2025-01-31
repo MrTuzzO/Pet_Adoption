@@ -185,7 +185,7 @@ document.getElementById("post-form").addEventListener("submit", async (event) =>
     }
 
     try {
-        const response = await fetch("https://pet-adoption-omega-seven.vercel.app/api/pet/birds/", {
+        const response = await fetch(`${root_api}/api/pet/birds/`, {
             method: "POST",
             headers: {
                 'Authorization': `Token ${authToken}`

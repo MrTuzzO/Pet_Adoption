@@ -21,7 +21,7 @@ document.getElementById('register-form').addEventListener('submit', async functi
     }
 
     try {
-        const response = await fetch('https://pet-adoption-omega-seven.vercel.app/auth/registration/', {
+        const response = await fetch(`${root_api}/auth/registration/`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

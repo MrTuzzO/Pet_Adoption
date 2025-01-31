@@ -1,5 +1,5 @@
 // main.js
-const apiUrl = 'https://pet-adoption-omega-seven.vercel.app/api/pet/cats/'; // Replace with your API endpoint
+const apiUrl = `${root_api}/api/pet/cats/`; // Replace with your API endpoint
 
 
 

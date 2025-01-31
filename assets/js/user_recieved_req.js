@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadingIndicator.style.display = 'block';
     receivedRequestsContainer.innerHTML = '';
 
-    fetch('https://pet-adoption-omega-seven.vercel.app/api/adoptions/adoption-request/received-requests/', {
+    fetch(`${root_api}/api/adoptions/adoption-request/received-requests/`, {
         method: 'GET',
         headers: {
             'Authorization': 'Token ' + localStorage.getItem('authToken')
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 function updateStatus(requestId, action) {
     console.log(`Updating request status to ${action} for request ID: ${requestId}`);
-    fetch(`https://pet-adoption-omega-seven.vercel.app/api/adoptions/adoption-request/${requestId}/update/`, {
+    fetch(`${root_api}/api/adoptions/adoption-request/${requestId}/update/`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

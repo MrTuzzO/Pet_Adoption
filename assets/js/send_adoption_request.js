@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         loader.classList.remove("d-none");
 
         try {
-            const response = await fetch(`https://pet-adoption-omega-seven.vercel.app/api/adoptions/adoption-request/${petId}/create/`, {
+            const response = await fetch(`${root_api}/api/adoptions/adoption-request/${petId}/create/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

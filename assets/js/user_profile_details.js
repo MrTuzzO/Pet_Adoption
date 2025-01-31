@@ -1,6 +1,6 @@
 // Fetch user profile data and populate the card
 document.addEventListener("DOMContentLoaded", () => {
-    const apiUrl = "https://pet-adoption-omega-seven.vercel.app/api/auth/profile/"; // Update the URL as per your backend setup
+    const apiUrl = `${root_api}/api/auth/profile/`; // Update the URL as per your backend setup
     const authToken = localStorage.getItem("authToken"); // Assuming authToken is stored in localStorage
 
     if (!authToken) {

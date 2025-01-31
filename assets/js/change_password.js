@@ -18,7 +18,7 @@ document.getElementById('changePasswordForm').addEventListener('submit', async f
     }
 
     try {
-        const response = await fetch('https://pet-adoption-omega-seven.vercel.app/api/auth/password/change/', {
+        const response = await fetch(`${root_api}/api/auth/password/change/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

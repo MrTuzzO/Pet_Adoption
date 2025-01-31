@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Function to pre-fill form with existing profile data
     async function fetchProfileData() {
         try {
-            const response = await fetch('https://pet-adoption-omega-seven.vercel.app/api/auth/profile/', {
+            const response = await fetch(`${root_api}/api/auth/profile/`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Token ${authToken}`,
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const mobile = document.getElementById('mobile').value;
 
         try {
-            const response = await fetch('https://pet-adoption-omega-seven.vercel.app/api/auth/profile/', {
+            const response = await fetch(`${root_api}/api/auth/profile/`, {
                 method: 'PUT', // Use PATCH if partial updates are allowed
                 headers: {
                     'Content-Type': 'application/json',

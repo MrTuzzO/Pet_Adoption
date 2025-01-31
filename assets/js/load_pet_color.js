@@ -1,6 +1,7 @@
 // Function to dynamically load color options
 function loadColorOptions(elementId) {
-    fetch('https://pet-adoption-omega-seven.vercel.app/api/pet/colors/')
+    console.log(root_api);
+    fetch(`${root_api}/api/pet/colors/`)
         .then(response => response.json())
         .then(data => {
             const colorSelect = document.getElementById(elementId);

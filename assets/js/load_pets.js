@@ -1,9 +1,7 @@
-// Base API URL
-const baseApiUrl = 'https://pet-adoption-omega-seven.vercel.app/api/pet/';
 
 // Function to fetch data from the API
 async function fetchPets(species, page = 1) {
-    const response = await fetch(`${baseApiUrl}${species}/?page=${page}`);
+    const response = await fetch(`${root_api}/api/pet/${species}/?page=${page}`);
     const data = await response.json();
     return data;
 }

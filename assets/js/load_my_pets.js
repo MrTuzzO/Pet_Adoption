@@ -1,5 +1,5 @@
 // Base API URL
-const baseApiUrl = 'https://pet-adoption-omega-seven.vercel.app/api/pets/my_pets/';
+const baseApiUrl = `${root_api}/api/pets/my_pets/`;
 
 // Function to fetch data from the API with authentication token
 async function fetchPets(page = 1) {

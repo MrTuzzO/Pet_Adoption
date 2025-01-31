@@ -18,8 +18,6 @@ function createPetCard(pet, selectedSpecies) {
     const timeDifference = today - dateAdded; // Difference in milliseconds
     const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
 
-    console.log(daysDifference);
-
     let badgeText = "";
     if (daysDifference === 0) {
         badgeText = "New Today";
@@ -123,7 +121,7 @@ window.addEventListener('DOMContentLoaded', () => {
 // Function to fetch pets based on filters
 async function fetchFilteredPets(species, filters, page = 1) {
     const query = new URLSearchParams(filters).toString();
-    const response = await fetch(`${root_api}${species}/?page=${page}&${query}`);
+    const response = await fetch(`${root_api}/api/pet/${species}/?page=${page}&${query}`);
     const data = await response.json();
     return data;
 }
